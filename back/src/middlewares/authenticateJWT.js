@@ -11,12 +11,12 @@ const authenticateJWT = (req, res, next) => {
     return res.status(401).json({ message: 'Access denied. No token provided.' });
   }
 
-  jwt.verify(token, 'secret', (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: 'Invalid token.' });
     }
 
-    console.log("Decoded JWT:", decoded);
+
 
     req.userId = decoded.userId; 
 

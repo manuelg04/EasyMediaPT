@@ -1,13 +1,15 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('postgres://default:XTO2U0mbrwqk@ep-sweet-resonance-132719.us-east-2.postgres.vercel-storage.com:5432/verceldb', {
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false //NO RECOMENDADO PARA PRODUCCIÓN
+
+const sequelize = new Sequelize(process.env.DB_URL, {
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: process.env.DB_SSL_REQUIRE === 'true',
+        rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true' // NO RECOMENDADO PARA PRODUCCIÓN
+      }
     }
-  }
-});
-
-module.exports = sequelize;
+  });
+  
+  module.exports = sequelize;

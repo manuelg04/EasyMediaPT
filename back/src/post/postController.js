@@ -1,4 +1,5 @@
 const { Message, User } = require('./../../models/userModel');
+const { getPostsByUser, getPostsByDate, getPostsByTitle } = require('./postService');
 
 // Crear una nueva publicación
 const createPost = async (req, res) => {
@@ -39,4 +40,25 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, getAllPosts };
+const getFilteredPosts = async (req, res) => {
+    const { userId, startDate, endDate, keyword } = req.query;
+  
+    if (userId) {
+      const posts = await getPostsByUser(userId);
+      return res.json(posts);
+    }
+  
+    if (startDate && endDate) {
+      const posts = await getPostsByDate(startDate, endDate);
+      return res.json(posts);
+    }
+  
+    if (keyword) {
+      const posts = await getPostsByTitle(keyword);
+      return res.json(posts);
+    }
+  
+    res.json({ message: 'No filter provided' });
+  };
+
+module.exports = { createPost, getAllPosts, getFilteredPosts };
