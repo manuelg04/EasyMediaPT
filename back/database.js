@@ -5,7 +5,7 @@ const sequelize = new Sequelize('postgres://default:XTO2U0mbrwqk@ep-sweet-resona
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false // <<<<<<< NO RECOMENDADO PARA PRODUCCIÓN
+      rejectUnauthorized: false //NO RECOMENDADO PARA PRODUCCIÓN
     }
   }
 });

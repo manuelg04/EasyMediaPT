@@ -37,9 +37,16 @@ const Message = sequelize.define('Message', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+}, {
+  tableName: 'postEasyMedia',
 });
 
-User.hasMany(Message);
-Message.belongsTo(User);
+
+
+Message.sync({ alter: false });
+
+User.hasMany(Message, { foreignKey: 'userId' });
+Message.belongsTo(User, { foreignKey: 'userId' });
+
 
 module.exports = { User, Message };
