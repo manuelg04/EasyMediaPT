@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./database');
+const sequelize = require('../database');
 
 const User = sequelize.define('User', {
   name: {
@@ -14,8 +14,15 @@ const User = sequelize.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
+  }, 
+  
+}, {
+  tableName: 'usuariosEasyMedia',
+
 });
+// Desactivar la sincronización para un modelo
+User.sync({ alter: false });
+
 
 const Message = sequelize.define('Message', {
   title: {

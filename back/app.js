@@ -1,5 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const { register } = require('./src/auth/auth');
+const { login } = require('./src/auth/auth');
+
+
 
 
 const app = express();
