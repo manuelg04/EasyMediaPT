@@ -1,0 +1,69 @@
+/* Contenedor general */
+.container {
+  background-color: #D1C4E9; /* Morado pastel más oscuro */
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Títulos */
+h1 {
+  margin-bottom: 10px;
+  color: #4A148C; /* Morado oscuro */
+}
+
+/* Subtítulo */
+p {
+  margin-bottom: 20px;
+  color: #4A148C; /* Morado oscuro */
+}
+
+/* Contenedor del formulario */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left; /* Alineación de texto a la izquierda para las etiquetas */
+}
+
+/* Etiquetas */
+label {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #4A148C; /* Morado oscuro */
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block; /* Hacer que los inputs sean elementos de bloque */
+  margin: 0 auto; /* Centrar los inputs */
+  width: 100%; /* Ancho al 100% del contenedor */
+  max-width: 300px; /* Ancho máximo de 300px */
+  padding: 10px;
+  border: 1px solid #4A148C; /* Morado oscuro */
+  border-radius: 4px;
+}
+
+/* Botón de envío */
+button[type="submit"] {
+  background: #4A148C; /* Morado oscuro */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Texto de registro */
+.signup-text {
+  margin-top: 20px;
+}
+
+.signup-text a {
+  color: blue;
+  text-decoration: underline;
+}
