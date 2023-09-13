@@ -13,6 +13,7 @@ export class MyPublicationsComponent implements OnInit {
   totalResults: number = 0;
   resultsPerPage: number = 3;
   currentPage: number = 1;
+  totalPages: number = 0;
 
   constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.filterForm = this.fb.group({
@@ -30,7 +31,8 @@ export class MyPublicationsComponent implements OnInit {
       (response: any) => {
         this.publications = response.data;
         this.totalResults = response.total;
-        // Implementa aquí la lógica de paginación
+        this.totalPages = Math.ceil(this.totalResults / this.resultsPerPage); // Calcula el número total de páginas
+
       },
       (error: any) => {
         console.log('Error al cargar las publicaciones', error);
@@ -39,6 +41,11 @@ export class MyPublicationsComponent implements OnInit {
   }
 
   onPageChange(page: number) {
+    this.currentPage = page;
+    this.loadPublications();
+  }
+
+  goToPage(page: number) {
     this.currentPage = page;
     this.loadPublications();
   }

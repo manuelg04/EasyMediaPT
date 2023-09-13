@@ -62,7 +62,7 @@ const getFilteredPosts = async (req, res) => {
   };
 
   const getMyPosts = async (req, res) => {
-    const userId = req.userId; // Asumiendo que el userId se guarda en req.userId cuando se autentica
+    const userId = req.userId; 
   
     try {
       const posts = await getPostsByUser(userId);

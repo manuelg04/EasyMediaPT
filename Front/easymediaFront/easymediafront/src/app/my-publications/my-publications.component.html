@@ -4,9 +4,22 @@
     <button (click)="loadPublications()">Filtrar</button>
   </form>
 
+  <div>Total de resultados: {{totalResults}}</div>
+  <div>Mostrando {{publications?.length}} resultados por página</div>
+
   <div *ngFor="let publication of publications">
-    <!-- Renderiza aquí cada publicación -->
+    <div class="publication-card">
+      <h3>{{publication.title}}</h3>
+      <p>{{publication.content}}</p>
+      <p>Publicado por: {{publication.user.name}}</p>
+      <p>Fecha: {{publication.createdAt | date:'short'}}</p>
+    </div>
   </div>
 
-  <!-- Añade aquí tu paginador -->
+  <!-- Paginador básico -->
+  <div class="pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+  </div>
 </div>
