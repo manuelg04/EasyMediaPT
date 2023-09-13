@@ -19,14 +19,24 @@ export class MyPublicationsComponent implements OnInit {
     this.filterForm = this.fb.group({
       date: ['']
     });
+    this.filterForm.get('date')?.valueChanges.subscribe(value => {
+      console.log("Date has changed:", value);
+    });
   }
 
   ngOnInit(): void {
+    console.log("ngOnInit is running");
+    console.log(this.filterForm);
+    this.filterForm.get('date')?.valueChanges.subscribe(value => {
+      console.log("Date has changed:", value);
+    });
     this.loadPublications();
   }
 
+
   loadPublications() {
     const date = this.filterForm.get('date')?.value;
+    console.log("Selected date: ", date);  // Agregar esta línea
     this.apiService.getMyPublications(date).subscribe(
       (response: any) => {
         console.log("🚀 ~ response:", response)

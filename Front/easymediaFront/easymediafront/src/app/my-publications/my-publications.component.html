@@ -1,5 +1,6 @@
 <div class="container">
   <h1>My Publications</h1>
+  <form [formGroup]="filterForm">
   <div class="header">
     <label for="date-select">Date Select:</label>
     <input type="date" id="date-select" formControlName="date">
@@ -7,6 +8,7 @@
     <span *ngIf="!hasPublications()">No Results Here</span>
   </div>
   <button (click)="loadPublications()">Filtrar</button>
+</form>
 
   <!-- Si hay publicaciones -->
   <div *ngIf="hasPublications()">
