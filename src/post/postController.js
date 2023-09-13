@@ -62,9 +62,18 @@ const getFilteredPosts = async (req, res) => {
   };
 
   const getMyPosts = async (req, res) => {
-    const userId = req.userId; 
+    const userId = req.userId;
+    const { date } = req.query; // Obtener la fecha desde la query
+    let myPosts = [];
+  
     try {
-      const myPosts = await getPostsByUser(userId); 
+      if (date) {
+        // Si hay una fecha, filtrar las publicaciones
+        myPosts = await getPostsByDate(date + "T00:00:00Z", date + "T23:59:59Z");
+      } else {
+        // Si no hay una fecha, obtener todas las publicaciones del usuario
+        myPosts = await getPostsByUser(userId);
+      }
       res.status(200).json(myPosts);
     } catch (error) {
       res.status(500).json({ message: 'Something went wrong' });

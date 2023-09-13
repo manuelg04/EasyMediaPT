@@ -3,15 +3,24 @@
   <div class="header">
     <label for="date-select">Date Select:</label>
     <input type="date" id="date-select" formControlName="date">
-    <span>Showing {{publications?.length}}/{{totalResults}} posts</span>
+    <span *ngIf="hasPublications()">Showing {{publications?.length}}/{{totalResults}} posts</span>
+    <span *ngIf="!hasPublications()">No Results Here</span>
   </div>
   <button (click)="loadPublications()">Filtrar</button>
 
-  <div *ngFor="let publication of publications" class="publication-card">
-    <h3>{{publication.title}}</h3>
-    <p>{{publication.content}}</p>
-    <p>Publicado por: {{publication.User?.name}}</p>
-    <p>Fecha: {{publication.createdAt | date:'short'}}</p>
+  <!-- Si hay publicaciones -->
+  <div *ngIf="hasPublications()">
+    <div *ngFor="let publication of publications" class="publication-card">
+      <h3>{{publication.title}}</h3>
+      <p>{{publication.content}}</p>
+      <p>Publicado por: {{publication.User?.name}}</p>
+      <p>Fecha: {{publication.createdAt | date:'short'}}</p>
+    </div>
+  </div>
+
+  <!-- Si no hay publicaciones -->
+  <div *ngIf="!hasPublications()">
+    <p>No results found for the selected date.</p>
   </div>
 
   <!-- Paginador básico -->

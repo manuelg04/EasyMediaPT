@@ -51,4 +51,9 @@ export class MyPublicationsComponent implements OnInit {
     this.loadPublications();
   }
 
+  hasPublications(): boolean {
+    return this.publications && this.publications.length > 0;
+  }
+
+
 }
