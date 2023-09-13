@@ -42,18 +42,33 @@ import { ApiService } from 'db';
     loadPublications() {
       const date = this.filterForm.get('date')?.value;
       const keyword = this.filterForm.get('keyword')?.value;
+
       this.apiService.getAllPublications(date, keyword).subscribe(
         (response: any) => {
-          console.log("🚀 ~ response:", response)
-          this.publications = response.posts;
-          this.totalResults = response.posts.length;
+          console.log("🚀 ~ response:", response);
+
+          if (Array.isArray(response)) {
+            this.publications = response;
+            // resto del código para manejar la respuesta...
+          } else {
+            console.log("La API no devolvió un array.");
+          }
+
+          // Actualizar la información de paginación
+          this.totalResults = this.publications.length;
           this.totalPages = Math.ceil(this.totalResults / this.resultsPerPage);
+
+          if (!date && !keyword) {
+            this.publications.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          }
         },
         (error: any) => {
           console.log('Error al cargar las publicaciones', error);
         }
       );
     }
+
+
 
     // ... (otros métodos como paginación, etc.)
   }

@@ -25,36 +25,44 @@ const createPost = async (req, res) => {
 };
 
 // Obtener todas las publicaciones
-const getAllPosts = async (req, res) => {
+const getAllPosts = async () => {
   try {
     const posts = await Message.findAll({
+      order: [
+        ['createdAt', 'DESC']
+      ],
       include: {
         model: User,
         attributes: ['name', 'email']
       }
     });
-
-    res.status(200).json({ posts });
+    return { status: 200, data: { posts } };
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong' });
+    return { status: 500, data: { message: 'Something went wrong' } };
   }
 };
+
 
 const getFilteredPosts = async (req, res) => {
   const { date, keyword } = req.query;
 
+  // Si se proporciona una fecha, filtra por esa fecha.
   if (date) {
     const posts = await getPostsByDate(date + "T00:00:00Z", date + "T23:59:59Z");
     return res.json(posts);
   }
 
+  // Si se proporciona una palabra clave, filtra por esa palabra clave.
   if (keyword) {
     const posts = await getPostsByTitle(keyword);
     return res.json(posts);
   }
 
-  res.json({ message: 'No filter provided' });
+  // Si no se proporcionan filtros, devuelva todas las publicaciones.
+  const result = await getAllPosts();
+  return res.status(result.status).json(result.data);
 };
+
 
   const getMyPosts = async (req, res) => {
     const userId = req.userId;
