@@ -28,7 +28,7 @@ export class ApiService {
     const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Configurar las cabeceras
 
-    let url = `${this.API_URL}/api/myPosts`;
+    let url = `${this.API_URL}/api/posts/mine`;
     if (date) {
       url += `?date=${date}`;
     }

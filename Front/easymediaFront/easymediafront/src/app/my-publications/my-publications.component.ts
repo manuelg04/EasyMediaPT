@@ -29,8 +29,9 @@ export class MyPublicationsComponent implements OnInit {
     const date = this.filterForm.get('date')?.value;
     this.apiService.getMyPublications(date).subscribe(
       (response: any) => {
-        this.publications = response.data;
-        this.totalResults = response.total;
+        console.log("🚀 ~ response:", response)
+        this.publications = response
+        this.totalResults = response.length;
         this.totalPages = Math.ceil(this.totalResults / this.resultsPerPage); // Calcula el número total de páginas
 
       },

@@ -10,3 +10,32 @@
   align-items: center;
   margin-top: 16px;
 }
+
+.container {
+  background-color: #f3e5f5; /* Morado pastel */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px; /* Limita el ancho del contenedor */
+  margin: auto; /* Centra el contenedor */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: white;
+  text-align: center; /* Centra el título */
+}
+
+.publication-card {
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centra el texto dentro de cada tarjeta */
+}

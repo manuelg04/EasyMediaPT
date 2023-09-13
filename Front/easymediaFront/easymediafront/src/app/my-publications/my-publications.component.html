@@ -1,19 +1,17 @@
-<div>
-  <form [formGroup]="filterForm">
-    <input type="date" formControlName="date">
-    <button (click)="loadPublications()">Filtrar</button>
-  </form>
+<div class="container">
+  <h1>My Publications</h1>
+  <div class="header">
+    <label for="date-select">Date Select:</label>
+    <input type="date" id="date-select" formControlName="date">
+    <span>Showing {{publications?.length}}/{{totalResults}} posts</span>
+  </div>
+  <button (click)="loadPublications()">Filtrar</button>
 
-  <div>Total de resultados: {{totalResults}}</div>
-  <div>Mostrando {{publications?.length}} resultados por página</div>
-
-  <div *ngFor="let publication of publications">
-    <div class="publication-card">
-      <h3>{{publication.title}}</h3>
-      <p>{{publication.content}}</p>
-      <p>Publicado por: {{publication.user.name}}</p>
-      <p>Fecha: {{publication.createdAt | date:'short'}}</p>
-    </div>
+  <div *ngFor="let publication of publications" class="publication-card">
+    <h3>{{publication.title}}</h3>
+    <p>{{publication.content}}</p>
+    <p>Publicado por: {{publication.User?.name}}</p>
+    <p>Fecha: {{publication.createdAt | date:'short'}}</p>
   </div>
 
   <!-- Paginador básico -->
