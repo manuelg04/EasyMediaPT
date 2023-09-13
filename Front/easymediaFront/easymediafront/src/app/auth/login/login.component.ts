@@ -24,7 +24,7 @@ export class LoginComponent {
         console.log('Login successful', response);
         // Guardar el token en el almacenamiento local
       localStorage.setItem('token', response.token);
-      localStorage.setItem('name', response.name);
+      localStorage.setItem('username', response.username);
       // Redirigir al usuario al componente de posts
       this.router.navigate(['/posts']);
 

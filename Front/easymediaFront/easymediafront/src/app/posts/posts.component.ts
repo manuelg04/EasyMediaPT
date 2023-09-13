@@ -9,11 +9,14 @@ import { ApiService } from 'db'; // Asegúrate de que esta ruta sea la correcta
 })
 export class PostsComponent implements OnInit {
   postForm: FormGroup;
-  name: string;
+  username: string;
   currentDate = new Date();
 
+  showModalSuccess = false;
+  showModalError = false;
+
   constructor(private fb: FormBuilder, private apiService: ApiService) {
-    this.name = localStorage.getItem('name') || 'Guest';
+    this.username = localStorage.getItem('username') || 'Guest';
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required]
@@ -29,12 +32,24 @@ export class PostsComponent implements OnInit {
       this.apiService.createPost(this.postForm.value).subscribe(
         (response: any) => {
           console.log('Post creado', response);
-
+          this.showModalSuccess = true;
         },
         (error: any) => {
           console.log('Error al crear el post', error);
+          this.showModalError = true;
         }
       );
     }
   }
+
+
+  closeModalSuccess() {
+    this.showModalSuccess = false;
+  }
+
+  closeModalError() {
+    this.showModalError = false;
+  }
+
+
 }

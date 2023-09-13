@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <div class="navbar-content">
+    <span class="navbar-username">{{ username }}</span>
+    <ul class="navbar-links">
+      <li><a routerLink="/create-publication">Create Publication</a></li>
+      <li><a routerLink="/my-publications">My Publications</a></li>
+      <li><a routerLink="/all-publications">See All Publications</a></li>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
