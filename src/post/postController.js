@@ -63,14 +63,15 @@ const getFilteredPosts = async (req, res) => {
 
   const getMyPosts = async (req, res) => {
     const userId = req.userId; 
-  
     try {
-      const posts = await getPostsByUser(userId);
-      res.status(200).json({ posts });
+      const myPosts = await getPostsByUser(userId); 
+      res.status(200).json(myPosts);
     } catch (error) {
       res.status(500).json({ message: 'Something went wrong' });
     }
   };
+  
+  
   
 
 module.exports = { createPost, getAllPosts, getFilteredPosts, getMyPosts };
