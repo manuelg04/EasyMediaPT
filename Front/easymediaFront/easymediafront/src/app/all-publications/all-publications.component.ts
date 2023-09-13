@@ -47,17 +47,22 @@ import { ApiService } from 'db';
         (response: any) => {
           console.log("🚀 ~ response:", response);
 
-          if (Array.isArray(response)) {
+          if (response?.posts) {
+            // Si la respuesta contiene una propiedad 'posts', usamos eso
+            this.publications = response.posts;
+          } else if (Array.isArray(response)) {
+            // Si la respuesta es un array, usamos el array completo
             this.publications = response;
-            // resto del código para manejar la respuesta...
           } else {
-            console.log("La API no devolvió un array.");
+            console.log("La API no devolvió un formato reconocido.");
+            return; // Salimos temprano si no podemos manejar la respuesta
           }
 
           // Actualizar la información de paginación
           this.totalResults = this.publications.length;
           this.totalPages = Math.ceil(this.totalResults / this.resultsPerPage);
 
+          // Si no hay filtros aplicados, ordenamos por fecha de creación descendente
           if (!date && !keyword) {
             this.publications.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           }
