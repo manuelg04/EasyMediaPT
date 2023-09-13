@@ -1,21 +1,20 @@
 <div class="container">
   <h1>Create Message</h1>
-  <form [formGroup]="postForm">
+  <form [formGroup]="postForm" (ngSubmit)="onShare()">
     <div class="form-group">
       <label for="title">Title Message:</label>
-      <input type="text" id="title" formControlName="title">
+      <input type="text" id="title" formControlName="title" placeholder="Enter title">
     </div>
     <div class="form-group">
-      <label for="message">Message:</label>
-      <textarea id="message" formControlName="message"></textarea>
+      <label for="message">Messages:</label>
+      <textarea id="message" formControlName="message" placeholder="Enter message"></textarea>
     </div>
-    <button type="button" (click)="onShare()">Share</button>
+    <button type="submit">Share</button>
   </form>
-
   <div class="card">
     <h2>Your Post Title: {{ postForm.get('title')?.value }}</h2>
-    <p>By: {{ username }}</p>
-    <p>Date: {{ currentDate | date:'medium' }}</p>
     <p>Message: {{ postForm.get('message')?.value }}</p>
+    <p>Username: {{ name }}</p>
+    <p>Date: {{ currentDate | date }}</p>
   </div>
 </div>

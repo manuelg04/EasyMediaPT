@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'db'; // Asegúrate de que esta ruta sea la correcta
 
 @Component({
   selector: 'app-posts',
@@ -8,13 +9,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PostsComponent implements OnInit {
   postForm: FormGroup;
-  username = 'John Doe'; // Aquí puedes poner el nombre del usuario actual
+  name: string;
   currentDate = new Date();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiService: ApiService) {
+    this.name = localStorage.getItem('name') || 'Guest';
     this.postForm = this.fb.group({
       title: ['', Validators.required],
-      message: ['', Validators.required]
+      content: ['', Validators.required]
     });
   }
 
@@ -22,7 +24,17 @@ export class PostsComponent implements OnInit {
   }
 
   onShare() {
-    console.log('Post shared:', this.postForm.value);
-    // Aquí puedes añadir la lógica para compartir el post, como una llamada API
+    if (this.postForm.valid) {
+      console.log(this.postForm.value);
+      this.apiService.createPost(this.postForm.value).subscribe(
+        (response: any) => {
+          console.log('Post creado', response);
+
+        },
+        (error: any) => {
+          console.log('Error al crear el post', error);
+        }
+      );
+    }
   }
 }

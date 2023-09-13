@@ -1,5 +1,5 @@
 // api.service.ts
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,5 +16,11 @@ export class ApiService {
 
   loginUser(user: any) {
     return this.httpClient.post(`${this.API_URL}/api/login`, user);
+  }
+
+  createPost(postData: any) {
+    const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Configurar las cabeceras
+    return this.httpClient.post(`${this.API_URL}/api/posts`, postData, { headers });
   }
 }

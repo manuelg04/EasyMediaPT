@@ -1,40 +1,54 @@
+/* Contenedor general */
 .container {
-  max-width: 600px;
+  background-color: #D1C4E9; /* Morado pastel */
+  max-width: 400px;
   margin: auto;
   padding: 20px;
+  border-radius: 4px;
+  text-align: center;
 }
 
-.form-group {
+/* Título */
+h1 {
+  color: white;
   margin-bottom: 20px;
 }
 
+/* Etiquetas */
 label {
-  display: block;
-  margin-bottom: 10px;
+  color: black;
   font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-input,
+/* Campos de entrada */
+input[type="text"],
 textarea {
+  display: block;
+  margin: 0 auto;
   width: 100%;
+  max-width: 300px;
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+/* Botón de compartir */
+button[type="submit"] {
+  background: linear-gradient(90deg, #98ff98, #ff6347); /* Verde menta a rojo */
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+/* Card de previsualización */
 .card {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
+  background-color: #B2DFDB; /* Azul menta */
+  padding: 15px;
   border-radius: 4px;
+  margin-top: 20px;
 }
