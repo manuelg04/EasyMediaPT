@@ -25,10 +25,13 @@ export class ApiService {
   }
 
   getMyPublications(date?: string) {
-    let url = `${this.API_URL}/api/myPublications`;
+    const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Configurar las cabeceras
+
+    let url = `${this.API_URL}/api/myPosts`;
     if (date) {
       url += `?date=${date}`;
     }
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, { headers });
   }
 }

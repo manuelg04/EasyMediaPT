@@ -73,4 +73,4 @@ const getFilteredPosts = async (req, res) => {
   };
   
 
-module.exports = { createPost, getAllPosts, getFilteredPosts };
+module.exports = { createPost, getAllPosts, getFilteredPosts, getMyPosts };
