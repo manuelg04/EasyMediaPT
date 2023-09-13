@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { register } = require('./src/auth/auth');
 const { login } = require('./src/auth/auth');
-const { createPost, getAllPosts, getFilteredPosts } = require('./src/post/postController');
+const { createPost, getAllPosts, getFilteredPosts, getMyPosts } = require('./src/post/postController');
 const authenticateJWT = require('./src/middlewares/authenticateJWT');
 
 
