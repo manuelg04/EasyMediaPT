@@ -61,4 +61,16 @@ const getFilteredPosts = async (req, res) => {
     res.json({ message: 'No filter provided' });
   };
 
+  const getMyPosts = async (req, res) => {
+    const userId = req.userId; // Asumiendo que el userId se guarda en req.userId cuando se autentica
+  
+    try {
+      const posts = await getPostsByUser(userId);
+      res.status(200).json({ posts });
+    } catch (error) {
+      res.status(500).json({ message: 'Something went wrong' });
+    }
+  };
+  
+
 module.exports = { createPost, getAllPosts, getFilteredPosts };

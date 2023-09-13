@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { PostsComponent } from './posts/posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MyPublicationsComponent } from './my-publications/my-publications.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     PostsComponent,
     NavbarComponent,
+    MyPublicationsComponent,
   ],
   imports: [
     BrowserModule,

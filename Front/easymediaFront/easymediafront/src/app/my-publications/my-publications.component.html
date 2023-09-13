@@ -1,0 +1,12 @@
+<div>
+  <form [formGroup]="filterForm">
+    <input type="date" formControlName="date">
+    <button (click)="loadPublications()">Filtrar</button>
+  </form>
+
+  <div *ngFor="let publication of publications">
+    <!-- Renderiza aquí cada publicación -->
+  </div>
+
+  <!-- Añade aquí tu paginador -->
+</div>

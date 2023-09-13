@@ -23,4 +23,12 @@ export class ApiService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Configurar las cabeceras
     return this.httpClient.post(`${this.API_URL}/api/posts`, postData, { headers });
   }
+
+  getMyPublications(date?: string) {
+    let url = `${this.API_URL}/api/myPublications`;
+    if (date) {
+      url += `?date=${date}`;
+    }
+    return this.httpClient.get(url);
+  }
 }
