@@ -22,7 +22,11 @@ export class LoginComponent {
     this.apiService.loginUser(user).subscribe(
       (response:any) => {
         console.log('Login successful', response);
-        // Aquí puedes guardar el token en el almacenamiento local y redirigir al usuario
+        // Guardar el token en el almacenamiento local
+      localStorage.setItem('token', response.token);
+      // Redirigir al usuario al componente de posts
+      this.router.navigate(['/posts']);
+
       },
       (error:any) => {
         console.log('Login failed', error);
