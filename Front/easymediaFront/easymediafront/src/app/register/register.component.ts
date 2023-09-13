@@ -50,11 +50,11 @@ validUsername(control: AbstractControl): ValidationErrors | null {
     if (this.registerForm.valid) {
       this.ApiService.registerUser(this.registerForm.value).subscribe(
         (response: any) => {
-          console.log('Registro exitoso', response);
+
           // Aquí puedes redirigir al usuario o hacer algo más
         },
         (error: any) => {
-          console.log('Error en el registro', error);
+
         }
       );
     }

@@ -1,18 +1,33 @@
 <div class="container">
+  <img src="assets/image_main.png" alt="Easy Media Image">
   <h1>Easy Media</h1>
   <p>now share is easy</p>
-  <form (ngSubmit)="onLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email">
-      <!-- Mensajes de error aquí -->
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div *ngIf="loginForm.get('email')?.errors?.['required']">
+          Este campo es obligatorio.
+        </div>
+        <div *ngIf="loginForm.get('email')?.errors?.['email']">
+          Por favor, introduce un email válido.
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password">
-      <!-- Mensajes de error aquí -->
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <div *ngIf="loginForm.get('password')?.errors?.['required']">
+          Este campo es obligatorio.
+        </div>
+      </div>
     </div>
-    <button type="submit">Sign In</button>
+    <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
   </form>
   <p class="signup-text">Don't have an account? <a (click)="onSignUp()">Sign up here</a></p>
 </div>

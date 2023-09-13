@@ -28,14 +28,14 @@ export class PostsComponent implements OnInit {
 
   onShare() {
     if (this.postForm.valid) {
-      console.log(this.postForm.value);
+
       this.apiService.createPost(this.postForm.value).subscribe(
         (response: any) => {
-          console.log('Post creado', response);
+
           this.showModalSuccess = true;
         },
         (error: any) => {
-          console.log('Error al crear el post', error);
+
           this.showModalError = true;
         }
       );
