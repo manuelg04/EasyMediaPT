@@ -34,4 +34,18 @@ export class ApiService {
     }
     return this.httpClient.get(url, { headers });
   }
+
+  getAllPublications(date?: string, keyword?: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+
+    let url = `${this.API_URL}/api/posts`;
+    if (date || keyword) {
+      url += `?date=${date}&keyword=${keyword}`;
+    }
+    return this.httpClient.get(url, { headers });
+  }
+
+
+
 }

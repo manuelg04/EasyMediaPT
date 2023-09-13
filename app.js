@@ -28,7 +28,7 @@ app.post('/api/login', login);
 
 // Rutas para publicaciones
 app.post('/api/posts', authenticateJWT, createPost);
-app.get('/api/posts', authenticateJWT, getAllPosts);
+app.get('/api/posts', authenticateJWT, getFilteredPosts);
 app.get('/api/posts/mine', authenticateJWT, getMyPosts);
 
 

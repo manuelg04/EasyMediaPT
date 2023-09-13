@@ -41,25 +41,20 @@ const getAllPosts = async (req, res) => {
 };
 
 const getFilteredPosts = async (req, res) => {
-    const { userId, startDate, endDate, keyword } = req.query;
-  
-    if (userId) {
-      const posts = await getPostsByUser(userId);
-      return res.json(posts);
-    }
-  
-    if (startDate && endDate) {
-      const posts = await getPostsByDate(startDate, endDate);
-      return res.json(posts);
-    }
-  
-    if (keyword) {
-      const posts = await getPostsByTitle(keyword);
-      return res.json(posts);
-    }
-  
-    res.json({ message: 'No filter provided' });
-  };
+  const { date, keyword } = req.query;
+
+  if (date) {
+    const posts = await getPostsByDate(date + "T00:00:00Z", date + "T23:59:59Z");
+    return res.json(posts);
+  }
+
+  if (keyword) {
+    const posts = await getPostsByTitle(keyword);
+    return res.json(posts);
+  }
+
+  res.json({ message: 'No filter provided' });
+};
 
   const getMyPosts = async (req, res) => {
     const userId = req.userId;

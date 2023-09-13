@@ -1,3 +1,4 @@
+import { AllPublicationsComponent } from './all-publications/all-publications.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'posts', component: PostsComponent, canActivate: [AuthGuard] },
   { path: 'my-publications', component: MyPublicationsComponent, canActivate: [AuthGuard] },
+  { path: 'all-publications', component: AllPublicationsComponent, canActivate: [AuthGuard] },
 
 
 ];

@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>All Publications</h1>
+  <form [formGroup]="filterForm" class="filters">
+    <label for="word-search">Words to Search?</label>
+    <input type="text" id="word-search" formControlName="keyword" placeholder="Enter words to search">
+
+    <label for="date-select">Date Select:</label>
+    <input type="date" id="date-select" formControlName="date">
+  </form>
+
+  <div class="publications">
+    <div *ngFor="let publication of publications" class="publication-card">
+      <h3>{{publication.title}}</h3>
+      <p>{{publication.content}}</p>
+      <p>Publicado por: {{publication.User?.name}}</p>
+      <p>Fecha: {{publication.createdAt | date:'short'}}</p>
+    </div>
+  </div>
+</div>

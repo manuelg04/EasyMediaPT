@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { PostsComponent } from './posts/posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MyPublicationsComponent } from './my-publications/my-publications.component';
+import { AllPublicationsComponent } from './all-publications/all-publications.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MyPublicationsComponent } from './my-publications/my-publications.compo
     PostsComponent,
     NavbarComponent,
     MyPublicationsComponent,
+    AllPublicationsComponent,
   ],
   imports: [
     BrowserModule,
